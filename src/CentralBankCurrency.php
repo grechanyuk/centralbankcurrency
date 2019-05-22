@@ -49,7 +49,7 @@ class CentralBankCurrency
         } else {
             $currencies = CentralBankCurrencyModel::all();
             if(config('centralbankcurrency.cache.enable')) {
-                Cache::put('centralBankCurrencies', config('centralbankcurrency.cache.time'));
+                Cache::put('centralBankCurrencies', $currencies, config('centralbankcurrency.cache.time'));
             }
         }
 
