@@ -6,6 +6,7 @@ namespace Grechanyuk\CentralBankCurrency\Utils;
 
 use Grechanyuk\CentralBankCurrency\Models\CentralBankCurrency;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 class Currency extends Api
 {
@@ -23,6 +24,8 @@ class Currency extends Api
                 'value' => (float)str_replace(',', '.', (string)$currency->Value)
             ]);
         }
+
+        Cache::forget('centralBankCurrencies');
 
         return collect($currenciesArr);
     }
