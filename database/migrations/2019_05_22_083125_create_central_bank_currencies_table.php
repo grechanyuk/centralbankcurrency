@@ -14,7 +14,12 @@ class CreateCentralBankCurrenciesTable extends Migration
     public function up()
     {
         Schema::create('central_bank_currencies', function (Blueprint $table) {
-            $table->increments('id');
+            if(\Illuminate\Support\Facades\App::version() < 5.8) {
+                $table->increments('id');
+            } else {
+                $table->bigIncrements('id');
+            }
+
             $table->string('name');
             $table->integer('par');
             $table->string('cb_code')->index();
