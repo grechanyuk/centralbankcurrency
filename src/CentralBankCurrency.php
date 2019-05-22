@@ -20,14 +20,7 @@ class CentralBankCurrency
 
     public function convert(string $needCurrency, float $amount): ?float
     {
-        if(Cache::has('centralBankCurrencies')) {
-            $currencies = Cache::get('centralBankCurrencies');
-        } else {
-            $currencies = CentralBankCurrencyModel::all();
-            if(config('centralbankcurrency.cache.enable')) {
-                Cache::put('centralBankCurrencies', config('centralbankcurrency.cache.time'));
-            }
-        }
+        $currencies = $this->getCurrenciesList();
 
         $currency = $currencies->where('iso_code', $needCurrency)->first();
 
@@ -46,5 +39,20 @@ class CentralBankCurrency
     {
         $currencies = new Currency();
         return $currencies->currencyByDay($date);
+    }
+
+
+    public function getCurrenciesList(): Collection
+    {
+        if(Cache::has('centralBankCurrencies')) {
+            $currencies = Cache::get('centralBankCurrencies');
+        } else {
+            $currencies = CentralBankCurrencyModel::all();
+            if(config('centralbankcurrency.cache.enable')) {
+                Cache::put('centralBankCurrencies', config('centralbankcurrency.cache.time'));
+            }
+        }
+
+        return $currencies;
     }
 }

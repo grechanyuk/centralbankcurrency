@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static convert(string $isoCode, int $amount)
  * @method static currencyByDay(Carbon $date)
+ * @method static getCurrenciesList()
  */
 class CentralBankCurrency extends Facade
 {

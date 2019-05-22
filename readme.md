@@ -35,6 +35,7 @@ $ php artisan central-bank:sync-currencies
 ``` bash
 $ CentralBankCurrency::convert($isoCode, $amount) //$isoCode - ISO код в который необходимо перевести сумму $amount
 $ CentralBankCurrency::currencyByDay($date) //$data - дата в формате Carbon. Получение котировок за определенный день
+$ CentralBankCurrency::getCurrenciesList() //Список валют
 ```
 
 ## Change log
