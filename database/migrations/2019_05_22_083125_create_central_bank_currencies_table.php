@@ -24,6 +24,7 @@ class CreateCentralBankCurrenciesTable extends Migration
             $table->integer('par');
             $table->string('cb_code')->index();
             $table->string('iso_code')->index();
+            $table->string('icon')->nullable();
             $table->float('value', 8, 4);
             $table->timestamps();
         });
