@@ -6,7 +6,7 @@ namespace Grechanyuk\CentralBankCurrency\Utils;
 
 use Grechanyuk\CentralBankCurrency\Models\CentralBankCurrency;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Cache;
+use \Grechanyuk\CentralBankCurrency\Facades\CentralBankCurrency as CentralBankCurrencyFacade;
 
 class Currency extends Api
 {
@@ -25,7 +25,7 @@ class Currency extends Api
             ]);
         }
 
-        Cache::forget('centralBankCurrencies');
+        CentralBankCurrencyFacade::clearCache();
 
         return collect($currenciesArr);
     }

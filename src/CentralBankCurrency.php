@@ -55,4 +55,9 @@ class CentralBankCurrency
 
         return $currencies;
     }
+
+    public function clearCache()
+    {
+        Cache::forget('centralBankCurrencies');
+    }
 }
