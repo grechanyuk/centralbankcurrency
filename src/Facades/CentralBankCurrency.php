@@ -6,7 +6,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static convert(string $isoCode, int $amount)
+ * @method static convert(string $isoCode, int $amount, bool $reverse = false)
  * @method static currencyByDay(Carbon $date)
  * @method static getCurrenciesList()
  * @method static clearCache()

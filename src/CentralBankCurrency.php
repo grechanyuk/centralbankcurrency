@@ -15,10 +15,12 @@ class CentralBankCurrency
      * ISO Code
      * @param float $amount
      * Amount to convert
+     * @param bool $reverse
+     * Revers converting. Eg. USD to RUB
      * @return float|null
      */
 
-    public function convert(string $needCurrency, float $amount): ?float
+    public function convert(string $needCurrency, float $amount, bool $reverse = false): ?float
     {
         $currencies = $this->getCurrenciesList();
 
@@ -32,7 +34,13 @@ class CentralBankCurrency
             }
         }
 
-        return $amount * $currency->value / $currency->par;
+        if($reverse) {
+            $result = $amount / $currency->value * $currency->par;
+        } else {
+            $result = $amount * $currency->value / $currency->par;
+        }
+
+        return $result;
     }
 
     public function currencyByDay(Carbon $date): Collection
